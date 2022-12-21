@@ -19,6 +19,9 @@ public class GameMatchScreen extends State implements Screen {
     Tank tank1;
     Tank tank2;
 
+    private int powerMeterY = 20;
+    private int powerMeterDirection = 1;
+
     public GameMatchScreen(TankStarsGame game) {
         super(game);
         this.game = game;
@@ -159,6 +162,32 @@ public class GameMatchScreen extends State implements Screen {
         shapeRenderer.rect( 100, 50, fuelMeterWidth, 30);
         shapeRenderer.end();
 
+        // Power Meter
+
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+        shapeRenderer.setColor(144 / 255.0f, 248 / 255.0f, 47 / 255.0f, 1);
+        shapeRenderer.rect( 1150, 20, 25, 130);
+        shapeRenderer.end();
+
+
+        // Power Meter Cursor
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+        shapeRenderer.setColor(247 / 255.0f, 64 / 255.0f, 64 / 255.0f, 1);
+        shapeRenderer.rect( 1150, powerMeterY, 25, 5);
+        shapeRenderer.end();
+
+        if (powerMeterY <= (20)) {
+            powerMeterDirection = 1;
+        }
+        if (powerMeterY >= (20 + 130 - 5)) {
+            powerMeterDirection = 0;
+        }
+        if (powerMeterDirection == 1) {
+            powerMeterY += 1;
+        }
+        if (powerMeterDirection == 0) {
+            powerMeterY -= 1;
+        }
 
 
     }

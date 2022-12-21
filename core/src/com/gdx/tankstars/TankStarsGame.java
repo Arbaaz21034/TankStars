@@ -42,10 +42,10 @@ public class TankStarsGame extends Game implements Serializable {
     batch = new SpriteBatch();
 
     //this.setScreen(new TerrainGenerator_1());
-//    this.setScreen(new StartScreen(this));
+    //this.setScreen(new StartScreen(this));
     //this.setScreen(new TempScreen());
-    //his.setScreen(new GameMatchScreen((this)));
-    this.setScreen(new GameMatchScreenD((this)));
+    this.setScreen(new GameMatchScreen((this)));
+    //this.setScreen(new GameMatchScreenD((this)));
 
   }
 
