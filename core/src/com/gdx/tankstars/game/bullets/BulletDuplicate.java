@@ -12,25 +12,43 @@ public class BulletDuplicate {
 
     private Vector2 position;
 
+    private float velocity_x;
+    private float velocity_y;
+    private float angle;
+    private float velocity;
+
+    private boolean motion;
+
+    public void setParameters(float velocity, float angle) {
+        this.velocity_x = (float) (velocity*Math.cos(Math.toRadians(angle)));
+        this.velocity_y = (float) (velocity*Math.sin(Math.toRadians(angle)));
+
+
+
+    }
+
     public BulletDuplicate(Texture bulletTexture, Vector2 position) {
         this.bulletTexture = bulletTexture;
         this.position = position;
+        this.velocity = 100;
+        this.angle = 45;
+        this.setParameters(velocity, angle);
     }
 
-    public int moveRight(int force, int angle, Vector2 f){
+    public boolean moveRight(float delta){
+        velocity_x = velocity_x;
+        velocity_y = (float) (velocity_y - 9.81*delta);
+        position.x += velocity_x*delta;
+        position.y = position.y + velocity_y*delta;
 
-            if (position.x >= f.x){
-                return 1;
+        if (position.y <= 100){
+            return false;
 
-            }
-            this.position.x += 1;
-            this.position.y = (float) ((float) (this.position.x*Math.tan(angle)) - ((10*this.position.x*this.position.x)/(2*force*force*Math.cos(angle))));
-            return 0;
-
+        }
+        return true;
     }
 
     public void draw(SpriteBatch batch){
-        System.out.println("YYA");
         batch.draw(bulletTexture, position.x, position.y);
 
 

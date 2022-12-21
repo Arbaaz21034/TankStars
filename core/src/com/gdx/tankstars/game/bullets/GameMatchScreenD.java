@@ -106,8 +106,11 @@ public class GameMatchScreenD extends State implements Screen {
         }
 
         gameMatch.drawAssets();
-        bullet.draw(game.getBatch());
-//        bullet.moveRight(1, 2, new Vector2(1100, 100));
+//        bullet.setParameters(50, 45);
+        if (bullet.moveRight(delta)){
+            bullet.draw(game.getBatch());
+        }
+
         game.getBatch().end();
 
         // Health Bar Player 1 (100% width)
