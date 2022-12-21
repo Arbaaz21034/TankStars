@@ -19,6 +19,8 @@ public abstract class Tank extends Sprite {
     private Vector2 position;
     private Texture tankTexture;
 
+    private float damageAngle;
+
 
     public void burnFuel() {
         fuel--;
@@ -111,5 +113,21 @@ public abstract class Tank extends Sprite {
 
     public void refillFuel() {
         this.fuel = 100;
+    }
+
+    public int damageControl(){
+        if (damageAngle == 180){
+            damageAngle = 0;
+            return 1;
+        }
+        float radius = 1f;
+        damageAngle += 1;
+
+        float x = (float) (radius*Math.sin(Math.toRadians(-damageAngle)));
+        float y = (float) (radius*Math.cos(Math.toRadians(-damageAngle)));
+        this.position.x += x;
+        this.position.y += y;
+        return 0;
+
     }
 }

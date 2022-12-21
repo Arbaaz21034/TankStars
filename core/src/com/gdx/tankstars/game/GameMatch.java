@@ -56,6 +56,7 @@ public class GameMatch extends State {
 
 //        game.getBatch().draw(tank, tank.getX(), tank.getY(), tank.getOriginX(), tank.getOriginY(), tank.getWidth(), tank.getHeight(), tank.getScaleX(), tank.getScaleY(), tank.getRotation());
         tank1.draw(game.getBatch());
+        tank2.damageControl();
         tank2.draw(game.getBatch());
 
 
