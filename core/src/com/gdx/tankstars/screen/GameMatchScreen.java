@@ -176,7 +176,7 @@ public class GameMatchScreen extends State implements Screen {
         shapeRenderer.end();
 
 
-        
+
         // Power Meter
 
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
@@ -190,6 +190,14 @@ public class GameMatchScreen extends State implements Screen {
         shapeRenderer.setColor(247 / 255.0f, 64 / 255.0f, 64 / 255.0f, 1);
         shapeRenderer.rect( 1150, powerMeterY, 25, 5);
         shapeRenderer.end();
+
+        if (tank1.getHealth() <= 0) {
+            game.setScreen(new VictoryScreen(game, new Texture(Gdx.files.internal("victory2.png"))));
+        }
+        if (tank2.getHealth() <= 0) {
+            game.setScreen(new VictoryScreen(game, new Texture(Gdx.files.internal("victory1.png"))));
+        }
+
 
         if (!powerMeterStatic) {
             if (powerMeterY <= (20)) {
@@ -218,6 +226,7 @@ public class GameMatchScreen extends State implements Screen {
 
             }
         }
+
 
 
 
