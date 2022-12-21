@@ -3,6 +3,7 @@ package com.gdx.tankstars.screen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
@@ -116,17 +117,13 @@ public class GameMatchScreen extends State implements Screen {
         gameMatch.drawAssets();
         game.getBatch().end();
 
+
         // Health Bar Player 1 (100% width)
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         shapeRenderer.setColor(210 / 255.0f, 210 / 255.0f, 210 / 255.0f, 1);
         shapeRenderer.rect( 120, Gdx.graphics.getHeight() - 73, 200, 30);
         shapeRenderer.end();
 
-        // Health Meter Player 1 (variable width)
-        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-        shapeRenderer.setColor(247 / 255.0f, 64 / 255.0f, 64 / 255.0f, 1);
-        shapeRenderer.rect( 120, Gdx.graphics.getHeight() - 73, 200, 30);
-        shapeRenderer.end();
 
         // Health Bar Player 2 (100% width)
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
@@ -134,17 +131,30 @@ public class GameMatchScreen extends State implements Screen {
         shapeRenderer.rect( Gdx.graphics.getWidth() - (120 + 200), Gdx.graphics.getHeight() - 73, 200, 30);
         shapeRenderer.end();
 
+
+        float tank1Width = 200 * (float) tank1.getHealth() / 100;
+        float tank2Width = 200 * (float) tank2.getHealth() / 100;
+
+        // Health Meter Player 1 (variable width)
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+        shapeRenderer.setColor(247 / 255.0f, 64 / 255.0f, 64 / 255.0f, 1);
+        shapeRenderer.rect( 120, Gdx.graphics.getHeight() - 73, tank1Width, 30);
+        shapeRenderer.end();
+
+
         // Health Meter Player 2 (variable width)
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         shapeRenderer.setColor(247 / 255.0f, 64 / 255.0f, 64 / 255.0f, 1);
-        shapeRenderer.rect( Gdx.graphics.getWidth() - (120 + 200), Gdx.graphics.getHeight() - 73, 200, 30);
+        shapeRenderer.rect( Gdx.graphics.getWidth() - (120 + 200), Gdx.graphics.getHeight() - 73, tank2Width, 30);
         shapeRenderer.end();
+
 
         // Fuel Meter (100% width)
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         shapeRenderer.setColor(210 / 255.0f, 210 / 255.0f, 210 / 255.0f, 1);
         shapeRenderer.rect( 100, 50, 150, 30);
         shapeRenderer.end();
+
 
         int fuel = 100;
         if (super.getTurn() == 1) {
@@ -165,6 +175,8 @@ public class GameMatchScreen extends State implements Screen {
         shapeRenderer.rect( 100, 50, fuelMeterWidth, 30);
         shapeRenderer.end();
 
+
+        
         // Power Meter
 
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
