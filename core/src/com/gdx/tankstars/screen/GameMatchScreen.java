@@ -21,6 +21,8 @@ public class GameMatchScreen extends State implements Screen {
 
     private int powerMeterY = 20;
     private int powerMeterDirection = 1;
+    private boolean powerMeterStatic = false;
+    private int delay = 0;
 
     public GameMatchScreen(TankStarsGame game) {
         super(game);
@@ -94,7 +96,11 @@ public class GameMatchScreen extends State implements Screen {
         if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
             System.out.println("Press Down");
         }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
+            System.out.println("Press Enter");
+            powerMeterStatic = true;
 
+        }
 
 
 
@@ -151,9 +157,6 @@ public class GameMatchScreen extends State implements Screen {
         float fuelMeterWidth = 150 * (float) fuel / 100;
         // remove the if statement below when not in development
         if (fuelMeterWidth == 0) {
-            tank1.refillFuel();
-            tank2.refillFuel();
-            super.changeTurn();
         }
 
         // Fuel Meter (variable width)
@@ -176,18 +179,34 @@ public class GameMatchScreen extends State implements Screen {
         shapeRenderer.rect( 1150, powerMeterY, 25, 5);
         shapeRenderer.end();
 
-        if (powerMeterY <= (20)) {
-            powerMeterDirection = 1;
+        if (!powerMeterStatic) {
+            if (powerMeterY <= (20)) {
+                powerMeterDirection = 1;
+            }
+            if (powerMeterY >= (20 + 130 - 5)) {
+                powerMeterDirection = 0;
+            }
+            if (powerMeterDirection == 1) {
+                powerMeterY += 1;
+            }
+            if (powerMeterDirection == 0) {
+                powerMeterY -= 1;
+            }
         }
-        if (powerMeterY >= (20 + 130 - 5)) {
-            powerMeterDirection = 0;
+        if (powerMeterStatic) {
+            delay++;
+            if (delay >= 100) {
+                powerMeterY = 20;
+                powerMeterStatic = false;
+                powerMeterDirection = 1;
+                tank1.refillFuel();
+                tank2.refillFuel();
+                changeTurn();
+                delay = 0;
+
+            }
         }
-        if (powerMeterDirection == 1) {
-            powerMeterY += 1;
-        }
-        if (powerMeterDirection == 0) {
-            powerMeterY -= 1;
-        }
+
 
 
     }
