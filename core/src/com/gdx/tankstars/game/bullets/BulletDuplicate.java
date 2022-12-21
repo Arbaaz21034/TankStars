@@ -30,7 +30,7 @@ public class BulletDuplicate {
     public BulletDuplicate(Texture bulletTexture, Vector2 position) {
         this.bulletTexture = bulletTexture;
         this.position = position;
-        this.velocity = 100;
+        this.velocity =90;
         this.angle = 45;
         this.setParameters(velocity, angle);
     }
@@ -41,7 +41,7 @@ public class BulletDuplicate {
         position.x += velocity_x*delta;
         position.y = position.y + velocity_y*delta;
 
-        if (position.y <= 100){
+        if (position.y <= 160){
             return false;
 
         }

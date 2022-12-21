@@ -34,7 +34,7 @@ public class GameMatchScreenD extends State implements Screen {
         System.out.println("Player 1 -> Tank " + game.getPlayer1());
         System.out.println("Player 2 -> Tank " + game.getPlayer2());
         Texture tex = new Texture(Gdx.files.internal("bullet.png"));
-        bullet = new BulletDuplicate(tex, new Vector2(100,100));
+        bullet = new BulletDuplicate(tex, new Vector2(100,210));
     }
 
 
