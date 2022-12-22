@@ -180,21 +180,6 @@ public class GameMatchScreen extends State implements Screen {
         shapeRenderer.end();
 
 
-        // Angle Picker
-        /*
-        float[] vertices = new float[] {650, 30, 650 + 3, 30, 650 + 3, 30 + 80, 650, 30 + 80};
-        Polygon polygon = new Polygon();
-        polygon.setVertices(vertices);
-        polygon.rotate(30);
-        shapeRenderer.setAutoShapeType(true);
-        shapeRenderer.begin();
-        shapeRenderer.polygon(polygon.getTransformedVertices());
-        //shapeRenderer.setColor(Color.RED);
-        //shapeRenderer.rect(0, 0, 5, 75);
-        //shapeRenderer.rotate(0, 0, 1, 45);
-        shapeRenderer.end();*/
-
-
         int fuel = 100;
         if (super.getTurn() == 1) {
             fuel = tank1.getFuel();
@@ -284,6 +269,7 @@ public class GameMatchScreen extends State implements Screen {
         }
 
         if (onDelay) {
+            float x = getAngle();
             delay++;
             if (delay >= 200) {
                 powerMeterY = 20;
@@ -302,6 +288,20 @@ public class GameMatchScreen extends State implements Screen {
 
 
     }
+
+    public float getAngle() {
+        float w = (float) angleMeterY / 145;
+        float res = (float) w * 100;
+        float res2 = res * 1.8f;
+        return res;
+    };
+
+    public float getPower() {
+        float w = (float) powerMeterY / 145;
+        float res = (float) w * 100;
+        return res;
+    }
+
 
     @Override
     public void resize(int width, int height) {
