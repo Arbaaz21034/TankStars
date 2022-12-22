@@ -38,6 +38,7 @@ public class GameMatchScreen extends State implements Screen {
     private boolean onDelay = false;
     private int delay = 0;
     private int paramCount = 0;
+    private boolean showBullet = false;
 
     public GameMatchScreen(TankStarsGame game) {
         super(game);
@@ -115,29 +116,7 @@ public class GameMatchScreen extends State implements Screen {
             if (!powerMeterStatic) {
                 powerMeterStatic = true;
                 onDelay = true;
-
-                if (super.getTurn() == 1) {
-                    bullet = new BulletDuplicate(tex, new Vector2(tank1.getPosition().x, tank1.getPosition().y));
-                    if (paramCount == 0) {
-                        bullet.setParameters(getPower(), getAngle());
-                        paramCount = 1;
-                    }
-                    if (bullet.moveRight(delta)) {
-                        game.getBatch().begin();
-                        bullet.draw(game.getBatch());
-                        game.getBatch().end();
-                    }
-                }
-                else if (super.getTurn() == 2) {
-                    bullet = new BulletDuplicate(tex, new Vector2(tank2.getPosition().x,tank2.getPosition().y));
-                    if (paramCount == 0) {
-                        bullet.setParameters(getPower(), getAngle());
-                        paramCount = 1;
-                    }
-                };
-
-
-
+                showBullet = true;
             }
             if (!angleMeterStatic) {
                 angleMeterStatic = true;
@@ -303,6 +282,30 @@ public class GameMatchScreen extends State implements Screen {
                 delay = 0;
                 onDelay = false;
             }
+        };
+
+
+        if (showBullet) {
+            if (super.getTurn() == 1) {
+                bullet = new BulletDuplicate(tex, new Vector2(tank1.getPosition().x, tank1.getPosition().y));
+                if (paramCount == 0) {
+                    bullet.setParameters(getPower(), getAngle());
+                    paramCount = 1;
+                }
+                if (bullet.moveRight(delta)) {
+                    game.getBatch().begin();
+                    bullet.draw(game.getBatch());
+                    game.getBatch().end();
+                }
+            }
+            else if (super.getTurn() == 2) {
+                bullet = new BulletDuplicate(tex, new Vector2(tank2.getPosition().x,tank2.getPosition().y));
+                if (paramCount == 0) {
+                    bullet.setParameters(getPower(), getAngle());
+                    paramCount = 1;
+                }
+            };
+
         }
 
 
