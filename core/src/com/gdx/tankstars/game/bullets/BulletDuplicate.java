@@ -48,7 +48,6 @@ public class BulletDuplicate {
         return true;
     }
 
-
     public boolean moveLeft(float delta){
         velocity_x = velocity_x;
         velocity_y = (float) (velocity_y - 9.81*delta);
