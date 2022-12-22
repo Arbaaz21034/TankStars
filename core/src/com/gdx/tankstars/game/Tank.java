@@ -183,13 +183,13 @@ public abstract class Tank extends Sprite {
         }
     }
 
-    public boolean damageControl(){
+    public boolean damageControl(float damage){
         if (this.getDamageAngle() >= 180){
             damageAngle = 0;
 //            if (this.getPosition().y == this.initialPosition.y)
                 return false;
         }
-        float radius = 1f;
+        float radius = damage/100;
         this.setDamageAngle(this.getDamageAngle() + 1);
 //        System.out.println(this.getDamageAngle());
 
@@ -214,11 +214,11 @@ public abstract class Tank extends Sprite {
 
     }
     public float calculateDamage(){
-        float distance = Math.abs(attackPoint.x - (this.position.x - this.getTankTexture().getWidth()/2));
+        float distance = Math.abs(attackPoint.x - (this.position.x + this.getTankTexture().getWidth()/2));
         System.out.println("Distance is " + distance);
-        if (distance < 200){
+        if (distance < 150){
 
-            return distance/2;
+            return (float) (150 - distance/1.5);
         }
         else{
             return 0;

@@ -43,6 +43,8 @@ public class GameMatchScreen extends State implements Screen {
     private boolean showDamage1 = false;
     private boolean showDamage2 = false;
 
+    private float damage;
+
 
 
     public GameMatchScreen(TankStarsGame game) {
@@ -315,10 +317,10 @@ public class GameMatchScreen extends State implements Screen {
                 }
                 else {
                     if (tank2.getAttackPoint().y > 160){
-
+                        onDelay = true;
                     }
                     else{
-                        float damage = tank2.calculateDamage();
+                        damage = tank2.calculateDamage();
                         System.out.println("The Damage is: "+ damage);
                         if (damage > 0){
                             showDamage2 = true;
@@ -345,10 +347,10 @@ public class GameMatchScreen extends State implements Screen {
 
                 else {
                     if (tank1.getAttackPoint().y > 160){
-
+                        onDelay = true;
                     }
                     else{
-                        float damage = tank1.calculateDamage();
+                        damage = tank1.calculateDamage();
                         System.out.println("The Damage is: "+ damage);
                         if (damage > 0){
                             showDamage1 = true;
@@ -368,7 +370,7 @@ public class GameMatchScreen extends State implements Screen {
         if (showDamage1){
 //            System.out.println("YESsss");
 //            System.out.println(tank1.getPosition().x);
-            if(!tank1.damageControl()){
+            if(!tank1.damageControl(damage)){
 //                System.out.println("YES");
                 showDamage1 = false;
                 onDelay = true;
@@ -378,7 +380,7 @@ public class GameMatchScreen extends State implements Screen {
         if (showDamage2){
 //            System.out.println("YESsss");
 //            System.out.println(tank1.getPosition().x);
-            if(!tank2.damageControl()){
+            if(!tank2.damageControl(damage)){
 //                System.out.println("YES");
                 showDamage2 = false;
                 onDelay = true;

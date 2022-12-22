@@ -21,6 +21,7 @@ public class BulletDuplicate {
     private boolean motion;
 
     public void setParameters(float velocity, float angle) {
+
         this.velocity_x = (float) (velocity*Math.cos(Math.toRadians(angle)));
         this.velocity_y = (float) (velocity*Math.sin(Math.toRadians(angle)));
 
@@ -32,12 +33,13 @@ public class BulletDuplicate {
     public BulletDuplicate(Texture bulletTexture, Vector2 position) {
         this.bulletTexture = bulletTexture;
         this.position = position;
-        this.velocity =90;
-        this.angle = 45;
-        this.setParameters(velocity, angle);
+//        this.velocity =90;
+//        this.angle = 45;
+//        this.setParameters(velocity, angle);
     }
 
     public boolean moveRight(float delta, Tank tank){
+//        delta += 50;
         velocity_y = (float) (velocity_y - 9.81*delta);
         position.x += velocity_x*delta;
         position.y = position.y + velocity_y*delta;
@@ -52,21 +54,30 @@ public class BulletDuplicate {
         }
 
         if (position.x > 1280){
+            tank.setAttackPoint(new Vector2(position.x, position.y));
+
             return false;
         }
         if (position.y > 720){
+            tank.setAttackPoint(new Vector2(position.x, position.y));
+
             return false;
         }
         if (position.x < 0){
+            tank.setAttackPoint(new Vector2(position.x, position.y));
+
             return false;
         }
         if (position.y < 0){
+            tank.setAttackPoint(new Vector2(position.x, position.y));
+
             return false;
         }
         return true;
     }
 
     public boolean moveLeft(float delta, Tank tank){
+//        delta += 50;
         velocity_y = (float) (velocity_y - 9.81*delta);
         position.x -= velocity_x*delta;
         position.y = position.y + velocity_y*delta;
@@ -78,15 +89,21 @@ public class BulletDuplicate {
 
         }
         if (position.x > 1280){
+            tank.setAttackPoint(new Vector2(position.x, position.y));
             return false;
         }
         if (position.y > 720){
+            tank.setAttackPoint(new Vector2(position.x, position.y));
             return false;
         }
         if (position.x < 0){
+            tank.setAttackPoint(new Vector2(position.x, position.y));
+
             return false;
         }
         if (position.y < 0){
+            tank.setAttackPoint(new Vector2(position.x, position.y));
+
             return false;
         }
         return true;
