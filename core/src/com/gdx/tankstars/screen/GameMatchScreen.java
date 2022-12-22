@@ -27,7 +27,13 @@ public class GameMatchScreen extends State implements Screen {
 
     private int powerMeterY = 20;
     private int powerMeterDirection = 1;
-    private boolean powerMeterStatic = false;
+    private boolean powerMeterStatic = true;
+
+    private int angleMeterY = 20;
+    private int angleMeterDirection = 1;
+    private boolean angleMeterStatic = false;
+
+    private boolean onDelay = false;
     private int delay = 0;
 
     public GameMatchScreen(TankStarsGame game) {
@@ -110,8 +116,15 @@ public class GameMatchScreen extends State implements Screen {
         }
         if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
             System.out.println("Press Enter");
-            powerMeterStatic = true;
+            if (!powerMeterStatic) {
+                powerMeterStatic = true;
+                onDelay = true;
 
+            }
+            if (!angleMeterStatic) {
+                angleMeterStatic = true;
+                powerMeterStatic = false;
+            }
         }
 
 
@@ -210,6 +223,13 @@ public class GameMatchScreen extends State implements Screen {
         shapeRenderer.rect( 1150, 20, 25, 130);
         shapeRenderer.end();
 
+        // Angle Meter
+
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+        shapeRenderer.setColor(47 / 255.0f, 169 / 255.0f, 248 / 255.0f, 1);
+        shapeRenderer.rect( 1000, 20, 25, 130);
+        shapeRenderer.end();
+
 
         // Power Meter Cursor
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
@@ -217,11 +237,34 @@ public class GameMatchScreen extends State implements Screen {
         shapeRenderer.rect( 1150, powerMeterY, 25, 5);
         shapeRenderer.end();
 
+
+        // Angle Meter Cursor
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+        shapeRenderer.setColor(247 / 255.0f, 64 / 255.0f, 64 / 255.0f, 1);
+        shapeRenderer.rect( 1000, angleMeterY, 25, 5);
+        shapeRenderer.end();
+
+
         if (tank1.getHealth() <= 0) {
             game.setScreen(new VictoryScreen(game, new Texture(Gdx.files.internal("victory2.png"))));
         }
         if (tank2.getHealth() <= 0) {
             game.setScreen(new VictoryScreen(game, new Texture(Gdx.files.internal("victory1.png"))));
+        }
+
+        if (!angleMeterStatic) {
+            if (angleMeterY <= (20)) {
+                angleMeterDirection = 1;
+            }
+            if (angleMeterY >= (20 + 130 - 5)) {
+                angleMeterDirection = 0;
+            }
+            if (angleMeterDirection == 1) {
+                angleMeterY += 1;
+            }
+            if (angleMeterDirection == 0) {
+                angleMeterY -= 1;
+            }
         }
 
 
@@ -239,21 +282,23 @@ public class GameMatchScreen extends State implements Screen {
                 powerMeterY -= 1;
             }
         }
-        if (powerMeterStatic) {
+
+        if (onDelay) {
             delay++;
-            if (delay >= 100) {
+            if (delay >= 200) {
                 powerMeterY = 20;
-                powerMeterStatic = false;
+                angleMeterY = 20;
+                angleMeterStatic = false;
+                powerMeterStatic = true;
                 powerMeterDirection = 1;
+                angleMeterDirection = 1;
                 tank1.refillFuel();
                 tank2.refillFuel();
                 changeTurn();
                 delay = 0;
-
+                onDelay = false;
             }
         }
-
-
 
 
     }
