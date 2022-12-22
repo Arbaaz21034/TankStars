@@ -1,4 +1,6 @@
 package com.gdx.tankstars.JUnitTests;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.gdx.tankstars.game.Tank;
 import com.gdx.tankstars.game.Tank1;
@@ -8,7 +10,9 @@ public class ConstraintsTest {
 
     @Test
     public void testConstraintsPositive() {
-        Tank t = new Tank1(new Vector2(2000, 1000));
+
+        Tank t = new Tank1(2000, 1000);
+
         float p_x = t.getPosition().x;
         float p_y = t.getPosition().y;
         if (p_x > 1280) {
@@ -21,7 +25,7 @@ public class ConstraintsTest {
 
     @Test
     public void testConstraintsNegative() {
-        Tank t = new Tank1(new Vector2(-100, -2000));
+        Tank t = new Tank1(-100, -2000);
         float p_x = t.getPosition().x;
         float p_y = t.getPosition().y;
         if (p_x < 0) {

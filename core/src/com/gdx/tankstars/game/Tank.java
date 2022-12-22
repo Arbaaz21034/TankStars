@@ -103,6 +103,12 @@ public abstract class Tank extends Sprite {
 
     }
 
+    public void setPositionInitially(Vector2 position) {
+        this.position = position;
+        checKConstraints();
+
+    }
+
 
     // Rotate the tank by the specified angle
     public void rotate(float angle) {
@@ -146,6 +152,21 @@ public abstract class Tank extends Sprite {
         }
         if (this.position.y > 720 - tankTexture.getHeight()){
             this.position.y = 720 - tankTexture.getHeight();
+        }
+        else if (this.position.y < 0){
+            this.position.y = 0;
+        }
+    }
+
+    public void checKConstraints(){
+        if (this.position.x > 1280){
+            this.position.x = 1280;
+        }
+        else if (this.position.x < 0){
+            this.position.x = 0;
+        }
+        if (this.position.y > 720){
+            this.position.y = 720;
         }
         else if (this.position.y < 0){
             this.position.y = 0;

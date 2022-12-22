@@ -16,6 +16,12 @@ public class Tank1 extends Tank {
 
     }
 
+    public Tank1(float x, float y) {
+        super();
+        this.setPositionInitially(new Vector2(x, y));
+
+    }
+
     @Override
     public void draw(SpriteBatch batch) {
         Vector2 position = this.getPosition();
