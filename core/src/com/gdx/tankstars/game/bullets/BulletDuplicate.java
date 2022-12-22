@@ -48,6 +48,19 @@ public class BulletDuplicate {
         return true;
     }
 
+    public boolean moveLeft(float delta){
+        velocity_x = velocity_x;
+        velocity_y = (float) (velocity_y - 9.81*delta);
+        position.x -= velocity_x*delta;
+        position.y = position.y + velocity_y*delta;
+
+        if (position.y <= 160){
+            return false;
+
+        }
+        return true;
+    }
+
     public void draw(SpriteBatch batch){
         batch.draw(bulletTexture, position.x, position.y);
 
