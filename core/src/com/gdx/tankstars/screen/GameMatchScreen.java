@@ -37,6 +37,7 @@ public class GameMatchScreen extends State implements Screen {
 
     private boolean onDelay = false;
     private int delay = 0;
+    private int paramCount = 0;
 
     public GameMatchScreen(TankStarsGame game) {
         super(game);
@@ -114,9 +115,13 @@ public class GameMatchScreen extends State implements Screen {
             if (!powerMeterStatic) {
                 powerMeterStatic = true;
                 onDelay = true;
+
                 if (super.getTurn() == 1) {
                     bullet = new BulletDuplicate(tex, new Vector2(tank1.getPosition().x, tank1.getPosition().y));
-                    bullet.setParameters(getPower(), getAngle());
+                    if (paramCount == 0) {
+                        bullet.setParameters(getPower(), getAngle());
+                        paramCount = 1;
+                    }
                     if (bullet.moveRight(delta)) {
                         game.getBatch().begin();
                         bullet.draw(game.getBatch());
@@ -125,7 +130,10 @@ public class GameMatchScreen extends State implements Screen {
                 }
                 else if (super.getTurn() == 2) {
                     bullet = new BulletDuplicate(tex, new Vector2(tank2.getPosition().x,tank2.getPosition().y));
-                    bullet.setParameters(getPower(), getAngle());
+                    if (paramCount == 0) {
+                        bullet.setParameters(getPower(), getAngle());
+                        paramCount = 1;
+                    }
                 };
 
 
@@ -291,6 +299,7 @@ public class GameMatchScreen extends State implements Screen {
                 tank1.refillFuel();
                 tank2.refillFuel();
                 changeTurn();
+                paramCount = 0;
                 delay = 0;
                 onDelay = false;
             }
