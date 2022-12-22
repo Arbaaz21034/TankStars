@@ -37,7 +37,7 @@ public class BulletDuplicate {
         this.setParameters(velocity, angle);
     }
 
-    public boolean moveRight(float delta){
+    public boolean moveRight(float delta, Tank tank){
         velocity_y = (float) (velocity_y - 9.81*delta);
         position.x += velocity_x*delta;
         position.y = position.y + velocity_y*delta;
@@ -45,6 +45,8 @@ public class BulletDuplicate {
 
 
         if (position.y <= 160){
+            tank.setAttackPoint(new Vector2(position.x, position.y));
+            tank.setInitialPosition(tank.getPosition());
             return false;
 
         }

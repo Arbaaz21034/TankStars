@@ -40,8 +40,8 @@ public class GameMatchScreen extends State implements Screen {
     private int paramCount = 0;
     private boolean showBullet = false;
 
-    private boolean showDamage = false;
-
+    private boolean showDamage1 = false;
+    private boolean showDamage2 = false;
 
 
 
@@ -98,7 +98,7 @@ public class GameMatchScreen extends State implements Screen {
         Vector2 tank1Pos = tank1.getPosition();
         Vector2 tank2Pos = tank2.getPosition();
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-            System.out.println("Press left");
+//            System.out.println("Press left");
             if (super.getTurn() == 1) {
                 tank1.setPosition(new Vector2(tank1Pos.x - speed, tank1Pos.y));
             }
@@ -107,7 +107,7 @@ public class GameMatchScreen extends State implements Screen {
             }
         }
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-            System.out.println("Press Right");
+//            System.out.println("Press Right");
             if (super.getTurn() == 1) {
                 tank1.setPosition(new Vector2(tank1Pos.x + speed, tank1Pos.y));
             }
@@ -116,16 +116,16 @@ public class GameMatchScreen extends State implements Screen {
             }
         }
         if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-            System.out.println("Press Up");
+//            System.out.println("Press Up");
         }
         if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-            System.out.println("Press Down");
+//            System.out.println("Press Down");
         }
         // ----------------------->>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
-            System.out.println("Press Enter");
+//            System.out.println("Press Enter");
             if (!powerMeterStatic) {
                 powerMeterStatic = true;
 //                onDelay = true;
@@ -308,14 +308,26 @@ public class GameMatchScreen extends State implements Screen {
                     bullet.setParameters(getPower(), getAngle());
                     paramCount = 1;
                 }
-                if (bullet.moveRight(delta)) {
+                if (bullet.moveRight(delta, tank2)) {
                     game.getBatch().begin();
                     bullet.draw(game.getBatch());
                     game.getBatch().end();
                 }
                 else {
+                    if (tank2.getAttackPoint().y > 160){
+
+                    }
+                    else{
+                        float damage = tank2.calculateDamage();
+                        System.out.println("The Damage is: "+ damage);
+                        if (damage > 0){
+                            showDamage2 = true;
+                        }
+                        else{
+                            onDelay = true;
+                        }
+                    }
                     showBullet = false;
-                    onDelay = true;
                 }
             }
             else if (super.getTurn() == 2) {
@@ -337,16 +349,15 @@ public class GameMatchScreen extends State implements Screen {
                     }
                     else{
                         float damage = tank1.calculateDamage();
+                        System.out.println("The Damage is: "+ damage);
                         if (damage > 0){
-//                            System.out.println("NOw");
-                            showDamage = true;
+                            showDamage1 = true;
                         }
                         else{
                             onDelay = true;
                         }
                     }
                     showBullet = false;
-//                    onDelay = true;
                 }
 
             }
@@ -354,17 +365,26 @@ public class GameMatchScreen extends State implements Screen {
 
 
         }
-        if (showDamage){
+        if (showDamage1){
 //            System.out.println("YESsss");
 //            System.out.println(tank1.getPosition().x);
             if(!tank1.damageControl()){
 //                System.out.println("YES");
-                showDamage = false;
+                showDamage1 = false;
                 onDelay = true;
             }
 
         }
+        if (showDamage2){
+//            System.out.println("YESsss");
+//            System.out.println(tank1.getPosition().x);
+            if(!tank2.damageControl()){
+//                System.out.println("YES");
+                showDamage2 = false;
+                onDelay = true;
+            }
 
+        }
 
 
 

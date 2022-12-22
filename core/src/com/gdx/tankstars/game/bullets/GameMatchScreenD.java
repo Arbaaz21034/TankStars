@@ -107,9 +107,9 @@ public class GameMatchScreenD extends State implements Screen {
 //        tank1.damageControl();
         gameMatch.drawAssets();
 //        bullet.setParameters(50, 45);
-        if (bullet.moveRight(delta)){
-            bullet.draw(game.getBatch());
-        }
+//        if (bullet.moveRight(delta)){
+//            bullet.draw(game.getBatch());
+//        }
 
 
         game.getBatch().end();
