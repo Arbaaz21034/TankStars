@@ -115,7 +115,7 @@ public class GameMatchScreen extends State implements Screen {
             System.out.println("Press Enter");
             if (!powerMeterStatic) {
                 powerMeterStatic = true;
-                onDelay = true;
+                //onDelay = true;
                 showBullet = true;
             }
             if (!angleMeterStatic) {
