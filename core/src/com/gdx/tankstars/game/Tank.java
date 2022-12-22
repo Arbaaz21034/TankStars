@@ -119,25 +119,14 @@ public abstract class Tank extends Sprite {
         this.fuel = 100;
     }
 
-    public int damageControl(){
-        if (damageAngle == 180){
-//            damageAngle = 0;
-            return 1;
-        }
-        float radius = 1f;
-        damageAngle += 1;
-
-        float x = (float) (radius*Math.sin(Math.toRadians(-damageAngle)));
-        float y = (float) (radius*Math.cos(Math.toRadians(-damageAngle)));
-        this.position.x += x;
-
-        this.position.y += y;
-        //checkConstraints();
-        return 0;
-
+    public float getDamageAngle() {
+        return damageAngle;
     }
 
-//    public final void tankTurn()
+    public void setDamageAngle(float damageAngle) {
+        this.damageAngle = damageAngle;
+    }
+    //    public final void tankTurn()
 //    {
 //        this.setPower();
 //        this.setAngle();
@@ -161,5 +150,21 @@ public abstract class Tank extends Sprite {
         }
     }*/
 
+    public int damageControl(Vector2 attackPoint){
+        if (this.getDamageAngle() == 180){
+//            damageAngle = 0;
+            return 1;
+        }
+        float radius = 1f;
+        this.setDamageAngle(this.getDamageAngle() + 1);
+
+        float x = (float) (radius*Math.sin(Math.toRadians(-this.getDamageAngle())));
+        float y = (float) (radius*Math.cos(Math.toRadians(-this.getDamageAngle())));
+
+        this.setPosition(new Vector2(this.getPosition().x + x, this.getPosition().y + y));
+        //checkConstraints();
+        return 0;
+
+    }
 
 }

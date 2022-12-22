@@ -25,6 +25,7 @@ public class BulletDuplicate {
 
 
 
+
     }
 
     public BulletDuplicate(Texture bulletTexture, Vector2 position) {
@@ -36,20 +37,33 @@ public class BulletDuplicate {
     }
 
     public boolean moveRight(float delta){
-        velocity_x = velocity_x;
         velocity_y = (float) (velocity_y - 9.81*delta);
         position.x += velocity_x*delta;
         position.y = position.y + velocity_y*delta;
+
+
 
         if (position.y <= 160){
             return false;
 
         }
+
+        if (position.x > 1280){
+            return false;
+        }
+        if (position.y > 720){
+            return false;
+        }
+        if (position.x < 0){
+            return false;
+        }
+        if (position.y < 0){
+            return false;
+        }
         return true;
     }
 
     public boolean moveLeft(float delta){
-        velocity_x = velocity_x;
         velocity_y = (float) (velocity_y - 9.81*delta);
         position.x -= velocity_x*delta;
         position.y = position.y + velocity_y*delta;
@@ -57,6 +71,18 @@ public class BulletDuplicate {
         if (position.y <= 160){
             return false;
 
+        }
+        if (position.x > 1280){
+            return false;
+        }
+        if (position.y > 720){
+            return false;
+        }
+        if (position.x < 0){
+            return false;
+        }
+        if (position.y < 0){
+            return false;
         }
         return true;
     }

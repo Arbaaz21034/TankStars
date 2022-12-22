@@ -104,12 +104,12 @@ public class GameMatchScreenD extends State implements Screen {
         else if (super.getTurn() == 2) {
             game.getBatch().draw(new Texture(Gdx.files.internal("turn-2.png")), 550, 600, 215, 130);
         }
-        tank1.damageControl();
+//        tank1.damageControl();
         gameMatch.drawAssets();
 //        bullet.setParameters(50, 45);
-//        if (bullet.moveRight(delta)){
-//            bullet.draw(game.getBatch());
-//        }
+        if (bullet.moveRight(delta)){
+            bullet.draw(game.getBatch());
+        }
 
 
         game.getBatch().end();

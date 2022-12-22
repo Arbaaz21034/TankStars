@@ -70,6 +70,10 @@ public class GameMatchScreen extends State implements Screen {
 
     @Override
     public void render(float delta) {
+
+        // --------------------------------------------------
+        // This is for Handling Pause button
+
         if (Gdx.input.justTouched()) {
             int x = Gdx.input.getX();
             int y = Gdx.input.getY();
@@ -81,9 +85,10 @@ public class GameMatchScreen extends State implements Screen {
             }
 
         };
+        // --------------------------------------------------
 
-
-
+        //<<<<-------------------------------------------------
+        // Handling Tank Movement
         float speed = gameMatch.getTank1().getSpeed();
         Vector2 tank1Pos = tank1.getPosition();
         Vector2 tank2Pos = tank2.getPosition();
@@ -111,11 +116,14 @@ public class GameMatchScreen extends State implements Screen {
         if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
             System.out.println("Press Down");
         }
+        // ----------------------->>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
         if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
             System.out.println("Press Enter");
             if (!powerMeterStatic) {
                 powerMeterStatic = true;
-                //onDelay = true;
+//                onDelay = true;
                 showBullet = true;
             }
             if (!angleMeterStatic) {
@@ -268,7 +276,7 @@ public class GameMatchScreen extends State implements Screen {
         if (onDelay) {
             float x = getAngle();
             delay++;
-            if (delay >= 200) {
+            if (delay >= 50) {
                 powerMeterY = 20;
                 angleMeterY = 20;
                 angleMeterStatic = false;
@@ -287,8 +295,10 @@ public class GameMatchScreen extends State implements Screen {
 
         if (showBullet) {
             if (super.getTurn() == 1) {
-                bullet = new BulletDuplicate(tex, new Vector2(tank1.getPosition().x, tank1.getPosition().y));
+
+
                 if (paramCount == 0) {
+                    bullet = new BulletDuplicate(tex, new Vector2(tank1.getPosition().x, tank1.getPosition().y));
                     bullet.setParameters(getPower(), getAngle());
                     paramCount = 1;
                 }
@@ -297,12 +307,26 @@ public class GameMatchScreen extends State implements Screen {
                     bullet.draw(game.getBatch());
                     game.getBatch().end();
                 }
+                else {
+                    showBullet = false;
+                    onDelay = true;
+                }
             }
             else if (super.getTurn() == 2) {
-                bullet = new BulletDuplicate(tex, new Vector2(tank2.getPosition().x,tank2.getPosition().y));
+
                 if (paramCount == 0) {
+                    bullet = new BulletDuplicate(tex, new Vector2(tank2.getPosition().x,tank2.getPosition().y));
                     bullet.setParameters(getPower(), getAngle());
                     paramCount = 1;
+                }
+                if (bullet.moveLeft(delta)) {
+                    game.getBatch().begin();
+                    bullet.draw(game.getBatch());
+                    game.getBatch().end();
+                }
+                else {
+                    showBullet = false;
+                    onDelay = true;
                 }
             };
 
@@ -315,12 +339,15 @@ public class GameMatchScreen extends State implements Screen {
         float w = (float) angleMeterY / 145;
         float res = (float) w * 100;
         float res2 = res * 1.8f;
+//        System.out.println("This is Angle: "+ res);
         return res;
+
     };
 
     public float getPower() {
         float w = (float) powerMeterY / 145;
         float res = (float) w * 100;
+//        System.out.println("This is Power: "+ res);
         return res;
     }
 
