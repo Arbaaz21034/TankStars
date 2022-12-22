@@ -100,6 +100,16 @@ public abstract class Tank extends Sprite {
             this.position = position;
             this.burnFuel();
         }
+        if (position.x < 5 && this.getFuel() > 0){
+            this.position = position;
+            this.position.x = 5;
+            this.burnFuel();
+        }
+        if (position.x > 1180 && this.getFuel() > 0){
+            this.position = position;
+            this.position.x = 1180;
+            this.burnFuel();
+        }
 
     }
 
@@ -175,7 +185,7 @@ public abstract class Tank extends Sprite {
 
     public boolean damageControl(){
         if (this.getDamageAngle() >= 180){
-//            damageAngle = 0;
+            damageAngle = 0;
 //            if (this.getPosition().y == this.initialPosition.y)
                 return false;
         }
@@ -186,15 +196,15 @@ public abstract class Tank extends Sprite {
         float x = (float) (radius*Math.sin(Math.toRadians(this.getDamageAngle())));
         float y = (float) (radius*Math.cos(Math.toRadians(this.getDamageAngle())));
 //        System.out.println("This is y: "+ y);
-        if (attackPoint.x > this.initialPosition.x){
+        if (attackPoint.x < (this.initialPosition.x)){
 //            System.out.println("I am in first");
-            this.position = (new Vector2(this.getPosition().x - x, this.getPosition().y + y));
+            this.position = (new Vector2(this.getPosition().x + x, this.getPosition().y + y));
 
 //            System.out.println(this.getPosition().y);
         }
         else{
 //            System.out.println("I am in second");
-            this.position = (new Vector2(this.getPosition().x + x, this.getPosition().y + y));
+            this.position = (new Vector2(this.getPosition().x - x, this.getPosition().y + y));
 //            System.out.println(this.getPosition().y);
         }
 
