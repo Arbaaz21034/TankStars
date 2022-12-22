@@ -3,6 +3,7 @@ package com.gdx.tankstars.game.bullets;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.gdx.tankstars.game.Tank;
 
 import java.util.*;
 
@@ -63,12 +64,14 @@ public class BulletDuplicate {
         return true;
     }
 
-    public boolean moveLeft(float delta){
+    public boolean moveLeft(float delta, Tank tank){
         velocity_y = (float) (velocity_y - 9.81*delta);
         position.x -= velocity_x*delta;
         position.y = position.y + velocity_y*delta;
 
         if (position.y <= 160){
+            tank.setAttackPoint(new Vector2(position.x, position.y));
+            tank.setInitialPosition(tank.getPosition());
             return false;
 
         }

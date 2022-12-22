@@ -5,9 +5,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.gdx.tankstars.TankStarsGame;
-
-import java.io.Serializable;
 
 public abstract class Tank extends Sprite {
 
@@ -21,8 +18,13 @@ public abstract class Tank extends Sprite {
 
     private float damageAngle;
 
+    private Vector2 attackPoint;
 
+    private Vector2 initialPosition;
 
+    public void setInitialPosition(Vector2 initialPosition) {
+        this.initialPosition = initialPosition;
+    }
 
     public void burnFuel() {
         fuel--;
@@ -71,6 +73,14 @@ public abstract class Tank extends Sprite {
 
     public void setSpeed(float speed) {
         this.speed = speed;
+    }
+
+    public Vector2 getAttackPoint() {
+        return attackPoint;
+    }
+
+    public void setAttackPoint(Vector2 attackPoint) {
+        this.attackPoint = attackPoint;
     }
 
     public Texture getTankTexture() {
@@ -150,21 +160,43 @@ public abstract class Tank extends Sprite {
         }
     }*/
 
-    public int damageControl(Vector2 attackPoint){
-        if (this.getDamageAngle() == 180){
+    public boolean damageControl(){
+        if (this.getDamageAngle() >= 180){
 //            damageAngle = 0;
-            return 1;
+//            if (this.getPosition().y == this.initialPosition.y)
+                return false;
         }
         float radius = 1f;
         this.setDamageAngle(this.getDamageAngle() + 1);
+        System.out.println(this.getDamageAngle());
 
-        float x = (float) (radius*Math.sin(Math.toRadians(-this.getDamageAngle())));
-        float y = (float) (radius*Math.cos(Math.toRadians(-this.getDamageAngle())));
+        float x = (float) (radius*Math.sin(Math.toRadians(this.getDamageAngle())));
+        float y = (float) (radius*Math.cos(Math.toRadians(this.getDamageAngle())));
+        System.out.println("This is y: "+ y);
+        if (attackPoint.x > this.initialPosition.x){
+            System.out.println("I am in first");
+            this.setPosition(new Vector2(this.getPosition().x + x, this.getPosition().y + y));
 
-        this.setPosition(new Vector2(this.getPosition().x + x, this.getPosition().y + y));
+            System.out.println(this.getPosition().y);
+        }
+        else{
+            System.out.println("I am in second");
+            this.setPosition(new Vector2(this.getPosition().x - x, this.getPosition().y + y));
+            System.out.println(this.getPosition().y);
+        }
+
         //checkConstraints();
-        return 0;
+        return true;
 
     }
-
+    public float calculateDamage(){
+        float distance = attackPoint.x - this.position.x;
+        System.out.println("Distance is " + distance);
+        if (distance < 1000){
+            return 1;
+        }
+        else{
+            return 0;
+        }
+    }
 }

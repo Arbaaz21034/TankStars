@@ -40,6 +40,11 @@ public class GameMatchScreen extends State implements Screen {
     private int paramCount = 0;
     private boolean showBullet = false;
 
+    private boolean showDamage = false;
+
+
+
+
     public GameMatchScreen(TankStarsGame game) {
         super(game);
         this.game = game;
@@ -125,6 +130,7 @@ public class GameMatchScreen extends State implements Screen {
                 powerMeterStatic = true;
 //                onDelay = true;
                 showBullet = true;
+
             }
             if (!angleMeterStatic) {
                 angleMeterStatic = true;
@@ -319,18 +325,47 @@ public class GameMatchScreen extends State implements Screen {
                     bullet.setParameters(getPower(), getAngle());
                     paramCount = 1;
                 }
-                if (bullet.moveLeft(delta)) {
+                if (bullet.moveLeft(delta, tank1)) {
                     game.getBatch().begin();
                     bullet.draw(game.getBatch());
                     game.getBatch().end();
                 }
+
                 else {
+                    if (tank1.getAttackPoint().y > 160){
+
+                    }
+                    else{
+                        float damage = tank1.calculateDamage();
+                        if (damage > 0){
+//                            System.out.println("NOw");
+                            showDamage = true;
+                        }
+                        else{
+                            onDelay = true;
+                        }
+                    }
                     showBullet = false;
-                    onDelay = true;
+//                    onDelay = true;
                 }
-            };
+
+            }
+
+
 
         }
+        if (showDamage){
+//            System.out.println("YESsss");
+//            System.out.println(tank1.getPosition().x);
+            if(!tank1.damageControl()){
+//                System.out.println("YES");
+                showDamage = false;
+                onDelay = true;
+            }
+
+        }
+
+
 
 
     }
