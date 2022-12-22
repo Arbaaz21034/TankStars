@@ -1,4 +1,4 @@
-package com.gdx.tankstars.JUnitTests;
+/*package com.gdx.tankstars.JUnitTests;
 import com.badlogic.gdx.math.Vector2;
 import com.gdx.tankstars.game.Tank;
 import com.gdx.tankstars.game.Tank1;
@@ -33,4 +33,4 @@ public class ConstraintsTest {
     }
 
 }
-
+*/

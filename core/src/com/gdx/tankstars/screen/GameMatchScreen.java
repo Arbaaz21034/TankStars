@@ -24,6 +24,8 @@ public class GameMatchScreen extends State implements Screen {
     private Tank tank1;
     private Tank tank2;
     private BulletDuplicate bullet;
+    Texture tex = new Texture(Gdx.files.internal("bullet.png"));
+
 
     private int powerMeterY = 20;
     private int powerMeterDirection = 1;
@@ -45,9 +47,6 @@ public class GameMatchScreen extends State implements Screen {
         this.tank2 = gameMatch.getTank2();
         game.setGameMatchData(gameMatch);
         game.setStateData(super.getState());
-
-        Texture tex = new Texture(Gdx.files.internal("bullet.png"));
-        bullet = new BulletDuplicate(tex, new Vector2(100,210));
     };
 
     public GameMatchScreen(TankStarsGame game, int calledByPause) {
@@ -57,10 +56,6 @@ public class GameMatchScreen extends State implements Screen {
         gameMatch = game.getGameMatchData();
         this.tank1 = gameMatch.getTank1();
         this.tank2 = gameMatch.getTank2();
-
-
-        Texture tex = new Texture(Gdx.files.internal("bullet.png"));
-        bullet = new BulletDuplicate(tex, new Vector2(100,210));
 
     }
 
@@ -119,6 +114,14 @@ public class GameMatchScreen extends State implements Screen {
             if (!powerMeterStatic) {
                 powerMeterStatic = true;
                 onDelay = true;
+                if (super.getTurn() == 1) {
+                    bullet = new BulletDuplicate(tex, new Vector2(tank1.getPosition().x,tank1.getPosition().y));
+                }
+                else if (super.getTurn() == 2) {
+                    bullet = new BulletDuplicate(tex, new Vector2(tank2.getPosition().x,tank2.getPosition().y));
+                };
+
+                bullet.setParameters(getPower(), getAngle());
 
             }
             if (!angleMeterStatic) {

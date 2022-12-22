@@ -88,7 +88,7 @@ public abstract class Tank extends Sprite {
     public void setPosition(Vector2 position) {
         if (position.x > 5 && position.x < 1200 && this.getFuel() > 0) {
             this.position = position;
-            checkConstraints();
+            //checkConstraints();
             this.burnFuel();
         }
 
@@ -132,7 +132,7 @@ public abstract class Tank extends Sprite {
         this.position.x += x;
 
         this.position.y += y;
-        checkConstraints();
+        //checkConstraints();
         return 0;
 
     }
@@ -145,7 +145,7 @@ public abstract class Tank extends Sprite {
 //        this.damageControl();
 //
 //    }
-
+    /*
     public void checkConstraints(){
         if (this.position.x > 1280 - tankTexture.getWidth()){
             this.position.x = 1280 - tankTexture.getWidth();
@@ -159,7 +159,7 @@ public abstract class Tank extends Sprite {
         else if (this.position.y < 0){
             this.position.y = 0;
         }
-    }
+    }*/
 
 
 }
