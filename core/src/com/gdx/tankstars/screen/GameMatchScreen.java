@@ -115,13 +115,20 @@ public class GameMatchScreen extends State implements Screen {
                 powerMeterStatic = true;
                 onDelay = true;
                 if (super.getTurn() == 1) {
-                    bullet = new BulletDuplicate(tex, new Vector2(tank1.getPosition().x,tank1.getPosition().y));
+                    bullet = new BulletDuplicate(tex, new Vector2(tank1.getPosition().x, tank1.getPosition().y));
+                    bullet.setParameters(getPower(), getAngle());
+                    if (bullet.moveRight(delta)) {
+                        game.getBatch().begin();
+                        bullet.draw(game.getBatch());
+                        game.getBatch().end();
+                    }
                 }
                 else if (super.getTurn() == 2) {
                     bullet = new BulletDuplicate(tex, new Vector2(tank2.getPosition().x,tank2.getPosition().y));
+                    bullet.setParameters(getPower(), getAngle());
                 };
 
-                bullet.setParameters(getPower(), getAngle());
+
 
             }
             if (!angleMeterStatic) {
