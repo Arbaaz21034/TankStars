@@ -4,8 +4,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.gdx.tankstars.TankStarsGame;
@@ -55,11 +57,10 @@ public class GameMatchScreen extends State implements Screen {
 
     @Override
     public void render(float delta) {
-
         if (Gdx.input.justTouched()) {
             int x = Gdx.input.getX();
             int y = Gdx.input.getY();
-            //System.out.println(x + " | " + y);
+            System.out.println(x + " | " + y);
 
             if (pauseButton.contains(x, y)) {
                 System.out.println("Select Pause button");
@@ -154,6 +155,21 @@ public class GameMatchScreen extends State implements Screen {
         shapeRenderer.setColor(210 / 255.0f, 210 / 255.0f, 210 / 255.0f, 1);
         shapeRenderer.rect( 100, 50, 150, 30);
         shapeRenderer.end();
+
+
+        // Angle Picker
+        /*
+        float[] vertices = new float[] {650, 30, 650 + 3, 30, 650 + 3, 30 + 80, 650, 30 + 80};
+        Polygon polygon = new Polygon();
+        polygon.setVertices(vertices);
+        polygon.rotate(30);
+        shapeRenderer.setAutoShapeType(true);
+        shapeRenderer.begin();
+        shapeRenderer.polygon(polygon.getTransformedVertices());
+        //shapeRenderer.setColor(Color.RED);
+        //shapeRenderer.rect(0, 0, 5, 75);
+        //shapeRenderer.rotate(0, 0, 1, 45);
+        shapeRenderer.end();*/
 
 
         int fuel = 100;
