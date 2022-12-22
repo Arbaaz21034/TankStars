@@ -1,0 +1,5 @@
+.gradle
+core/build
+core/**/*.class
+desktop/**/*.class
+
