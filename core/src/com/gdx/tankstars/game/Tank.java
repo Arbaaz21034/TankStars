@@ -196,7 +196,8 @@ public abstract class Tank extends Sprite {
         float x = (float) (radius*Math.sin(Math.toRadians(this.getDamageAngle())));
         float y = (float) (radius*Math.cos(Math.toRadians(this.getDamageAngle())));
 //        System.out.println("This is y: "+ y);
-        if (attackPoint.x < (this.initialPosition.x)){
+        PositionComparator pc = PositionComparator.getInstance();
+        if (pc.compare((this.initialPosition), attackPoint) > 0){
 //            System.out.println("I am in first");
             this.position = (new Vector2(this.getPosition().x + x, this.getPosition().y + y));
 
