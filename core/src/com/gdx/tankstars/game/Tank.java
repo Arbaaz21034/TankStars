@@ -88,8 +88,10 @@ public abstract class Tank extends Sprite {
     public void setPosition(Vector2 position) {
         if (position.x > 5 && position.x < 1200 && this.getFuel() > 0) {
             this.position = position;
+            checkConstraints();
             this.burnFuel();
         }
+
     }
 
     // Rotate the tank by the specified angle
