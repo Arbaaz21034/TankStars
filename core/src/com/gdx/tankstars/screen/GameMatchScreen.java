@@ -23,7 +23,8 @@ public class GameMatchScreen extends State implements Screen, Serializable {
     private Tank tank2;
     private Bullet bullet;
     private transient Texture tex = new Texture(Gdx.files.internal("bullet.png"));
-
+    private transient Texture texTurn1 = new Texture(Gdx.files.internal("turn-1.png"));
+    private transient Texture texTurn2 = new Texture(Gdx.files.internal("turn-2.png"));
 
     private int powerMeterY = 20;
     private int powerMeterDirection = 1;
@@ -155,10 +156,10 @@ public class GameMatchScreen extends State implements Screen, Serializable {
         game.getBatch().begin();
         game.getBatch().draw(backgroundTexture, 0, 0);
         if (super.getTurn() == 1) {
-            game.getBatch().draw(new Texture(Gdx.files.internal("turn-1.png")), 550, 600, 215, 130);
+            game.getBatch().draw(texTurn1, 550, 600, 215, 130);
         }
         else if (super.getTurn() == 2) {
-            game.getBatch().draw(new Texture(Gdx.files.internal("turn-2.png")), 550, 600, 215, 130);
+            game.getBatch().draw(texTurn2, 550, 600, 215, 130);
         }
 
         gameMatch.drawAssets();
@@ -313,8 +314,6 @@ public class GameMatchScreen extends State implements Screen, Serializable {
 
         if (showBullet) {
             if (super.getTurn() == 1) {
-
-
                 if (paramCount == 0) {
                     bullet = new Bullet(tex, new Vector2(tank1.getPosition().x, tank1.getPosition().y));
                     bullet.setParameters(getPower(), getAngle());
