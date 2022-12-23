@@ -200,7 +200,7 @@ public class GameMatchScreen extends State implements Screen {
         else if (super.getTurn() == 2) {
             fuel = tank2.getFuel();
         }
-
+        tank1.setFuel(75);
         float fuelMeterWidth = 150 * (float) fuel / 100;
         // remove the if statement below when not in development
         if (fuelMeterWidth == 0) {

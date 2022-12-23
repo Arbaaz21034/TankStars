@@ -145,6 +145,10 @@ public abstract class Tank extends Sprite {
         return fuel;
     }
 
+    public void setFuel(int fuel) {
+        this.fuel = fuel;
+    }
+
     public void refillFuel() {
         this.fuel = 100;
     }
@@ -221,8 +225,11 @@ public abstract class Tank extends Sprite {
         float distance = Math.abs(attackPoint.x - (this.position.x + this.getTankTexture().getWidth()/2));
         System.out.println("Distance is " + distance);
         if (distance < 150){
-
-            return (float) (150 - distance/1.5);
+            float damage = (float) (150 - distance / 1.15f);
+            if (damage >= 0) {
+                return damage;
+            }
+            return 0;
         }
         else{
             return 0;

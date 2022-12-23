@@ -8,12 +8,9 @@ import com.badlogic.gdx.math.Vector2;
 public class Tank1 extends Tank {
     Texture tankTexture;
 
-
-
     public Tank1(Vector2 position) {
         super();
         this.setPosition(position);
-
     }
 
     public Tank1(float x, float y) {
