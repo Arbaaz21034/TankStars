@@ -324,6 +324,7 @@ public class GameMatchScreen extends State implements Screen {
                         System.out.println("The Damage is: "+ damage);
                         if (damage > 0){
                             showDamage2 = true;
+                            tank2.doDamage((int)damage);
                         }
                         else{
                             onDelay = true;
@@ -354,6 +355,7 @@ public class GameMatchScreen extends State implements Screen {
                         System.out.println("The Damage is: "+ damage);
                         if (damage > 0){
                             showDamage1 = true;
+                            tank1.doDamage((int)damage);
                         }
                         else{
                             onDelay = true;

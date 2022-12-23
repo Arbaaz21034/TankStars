@@ -123,6 +123,10 @@ public abstract class Tank extends Sprite {
     // Rotate the tank by the specified angle
     public void rotate(float angle) {
         rotate(angle);
+    };
+
+    public void doDamage(int damage) {
+        this.health -= damage;
     }
 
     public int getHealth() {
