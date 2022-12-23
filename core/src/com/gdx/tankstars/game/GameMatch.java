@@ -49,11 +49,6 @@ public class GameMatch extends State implements Serializable {
 
     public GameMatch() {
         super();
-        System.out.println("-----------");
-        System.out.println(tank1.getType());
-        System.out.println(tank2.getType());
-        tank1.setType(tank1.getType());
-        tank2.setType(tank2.getType());
     }
 
     public void provideGame(TankStarsGame game) {

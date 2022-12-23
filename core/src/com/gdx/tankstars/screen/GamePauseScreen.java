@@ -44,6 +44,7 @@ public class GamePauseScreen implements Screen {
             else if (buttonSave.contains(x, y)) {
                 System.out.println("Press save button");
                 game.setScreen(new StartScreen(game));
+                System.out.println("eee -> " + gameMatch.getState().getTurn());
                 SaveData saveData = new SaveData(gameMatch);
                 Serialize serialize = new Serialize(saveData);
                 try {

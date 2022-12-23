@@ -19,6 +19,7 @@ public class Serialize {
         FileOutputStream fs = new FileOutputStream("save");
         ObjectOutputStream os = new ObjectOutputStream(fs);
         os.writeObject(this.saveData);
+        System.out.println("saveData turn -> " + saveData.getGameMatch().getState().getTurn());
         System.out.println("Game saved successfully");
         os.close();
         fs.close();
@@ -34,7 +35,6 @@ public class Serialize {
             System.out.println("Game loaded successfully");
             GameMatch gameMatch = mySaveData.getGameMatch();
             return gameMatch;
-
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

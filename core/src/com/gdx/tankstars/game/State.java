@@ -24,12 +24,12 @@ public class State implements Serializable {
 
     public State(TankStarsGame game, GameMatch gameMatch) {
         this.game = game;
-        this.turn = gameMatch.getState().getTurn();
-        System.out.println(this.turn);
+        this.turn = gameMatch.getTurn();
+        System.out.println("turn -> " + this.turn);
     }
 
     public State() {
-        
+
     }
 
     public State getState() {
@@ -47,7 +47,14 @@ public class State implements Serializable {
         else if (turn == 2){
             turn = 1;
         }
-    }
+    };
+
+
+    public String toString() {
+        return "[State]" + "Turn: " + this.turn;
+
+    };
+
 
 
 
