@@ -226,7 +226,7 @@ public abstract class Tank extends Sprite {
         System.out.println(attackPoint.x - (this.initialPosition.x + this.getTankTexture().getWidth()/2));
         System.out.println("Distance is " + distance);
         if (distance < 150){
-            float damage = (float) (150 - distance)/2;
+            float damage = (float) (150 - distance)/3;
             if (damage >= 0) {
                 return damage;
             }

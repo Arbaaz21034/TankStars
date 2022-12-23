@@ -59,22 +59,24 @@ public class BulletDuplicate {
 
         if (position.x > 1280){
             tank.setAttackPoint(new Vector2(position.x + this.getBulletTexture().getWidth()/2, position.y));
+            tank.setInitialPosition(tank.getPosition());
 
             return false;
         }
         if (position.y > 720){
             tank.setAttackPoint(new Vector2(position.x + this.getBulletTexture().getWidth()/2, position.y));
+            tank.setInitialPosition(tank.getPosition());
 
             return false;
         }
         if (position.x < 0){
             tank.setAttackPoint(new Vector2(position.x + this.getBulletTexture().getWidth()/2, position.y));
-
+            tank.setInitialPosition(tank.getPosition());
             return false;
         }
         if (position.y < 0){
             tank.setAttackPoint(new Vector2(position.x + this.getBulletTexture().getWidth()/2, position.y));
-
+            tank.setInitialPosition(tank.getPosition());
             return false;
         }
         return true;
@@ -94,19 +96,23 @@ public class BulletDuplicate {
         }
         if (position.x > 1280){
             tank.setAttackPoint(new Vector2(position.x + this.getBulletTexture().getWidth()/2, position.y));
+            tank.setInitialPosition(tank.getPosition());
             return false;
         }
         if (position.y > 720){
             tank.setAttackPoint(new Vector2(position.x + this.getBulletTexture().getWidth()/2, position.y));
+            tank.setInitialPosition(tank.getPosition());
             return false;
         }
         if (position.x < 0){
             tank.setAttackPoint(new Vector2(position.x + this.getBulletTexture().getWidth()/2, position.y));
+            tank.setInitialPosition(tank.getPosition());
 
             return false;
         }
         if (position.y < 0){
             tank.setAttackPoint(new Vector2(position.x + this.getBulletTexture().getWidth()/2, position.y));
+            tank.setInitialPosition(tank.getPosition());
 
             return false;
         }
