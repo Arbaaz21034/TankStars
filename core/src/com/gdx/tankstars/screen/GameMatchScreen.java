@@ -68,6 +68,20 @@ public class GameMatchScreen extends State implements Screen, Serializable {
         this.tank1 = gameMatch.getTank1();
         this.tank2 = gameMatch.getTank2();
 
+    };
+
+
+    public GameMatchScreen(TankStarsGame game, GameMatch gameMatch) {
+        super(game, gameMatch);
+        this.gameMatch = gameMatch;
+        gameMatch.provideGame(game);
+        System.out.println(gameMatch.getTank1());
+        System.out.println(gameMatch.getTank2());
+        System.out.println(game);
+        shapeRenderer = new ShapeRenderer();
+        this.tank1 = gameMatch.getTank1();
+        this.tank2 = gameMatch.getTank2();
+        this.game = game;
     }
 
 

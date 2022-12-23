@@ -3,9 +3,10 @@ package com.gdx.tankstars.game;
 
 import com.gdx.tankstars.TankStarsGame;
 
-// make this a singleton
-// This basically stores the state of the game
-public class State {
+import java.io.Serializable;
+
+
+public class State implements Serializable {
     private transient TankStarsGame game;
     private int turn; // 1 for player 1, 2 for player 2
     private Tank1 tank1;
@@ -21,8 +22,14 @@ public class State {
         this.turn = game.getStateData().getTurn();
     };
 
-    public State() {
+    public State(TankStarsGame game, GameMatch gameMatch) {
+        this.game = game;
+        this.turn = gameMatch.getState().getTurn();
+        System.out.println(this.turn);
+    }
 
+    public State() {
+        
     }
 
     public State getState() {

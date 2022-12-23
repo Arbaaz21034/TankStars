@@ -19,6 +19,9 @@ public class Tank2 extends Tank implements Serializable {
 
     @Override
     public void draw(SpriteBatch batch) {
+        if (super.getTankTexture() == null) {
+            super.setType(this.getType());
+        }
         Vector2 position = this.getPosition();
         batch.draw(super.getTankTexture(), position.x, position.y);
     }

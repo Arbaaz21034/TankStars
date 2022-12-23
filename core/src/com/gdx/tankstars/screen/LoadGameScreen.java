@@ -40,7 +40,8 @@ public class LoadGameScreen implements Screen  {
                 System.out.println("Press load game button");
                 try {
                     GameMatch gameMatch = Serialize.load();
-                    game.setScreen(new GameMatchScreen(game));
+                    System.out.println(gameMatch.getState().getTurn());
+                    game.setScreen(new GameMatchScreen(game, gameMatch));
                     this.dispose();
 
                 }

@@ -45,31 +45,29 @@ public class GameMatch extends State implements Serializable {
         }
         tank1.setType(t1);
         tank2.setType(t2);
-
-    };
+    }
 
     public GameMatch() {
         super();
+        System.out.println("-----------");
+        System.out.println(tank1.getType());
+        System.out.println(tank2.getType());
+        tank1.setType(tank1.getType());
+        tank2.setType(tank2.getType());
+    }
 
+    public void provideGame(TankStarsGame game) {
+        this.game = game;
     }
 
     public void start() {
         System.out.println("Game has been started.");
         this.drawAssets();
-    };
+    }
 
     public void drawAssets() {
-
-//        game.getBatch().draw(tank, tank.getX(), tank.getY(), tank.getOriginX(), tank.getOriginY(), tank.getWidth(), tank.getHeight(), tank.getScaleX(), tank.getScaleY(), tank.getRotation());
         tank1.draw(game.getBatch());
-        //tank2.damageControl();
         tank2.draw(game.getBatch());
-
-
-
-
-
-
     }
 
 }

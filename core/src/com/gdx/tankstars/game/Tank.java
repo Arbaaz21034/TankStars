@@ -6,7 +6,9 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
-public abstract class Tank extends Sprite {
+import java.io.Serializable;
+
+public abstract class Tank extends Sprite implements Serializable {
 
     private float speed = 1.0f;
     private int health = 100;
@@ -14,7 +16,7 @@ public abstract class Tank extends Sprite {
     private int type;
     private int player;
     private Vector2 position;
-    private Texture tankTexture;
+    private transient Texture tankTexture;
 
     private float damageAngle;
 
