@@ -16,7 +16,7 @@ import java.io.Serializable;
 public class GameMatchScreen extends State implements Screen, Serializable {
     private transient TankStarsGame game;
     private transient ShapeRenderer shapeRenderer;
-    private transient Texture backgroundTexture;
+    private transient Texture backgroundTexture = new Texture(Gdx.files.internal("background-3.png"));
     private final Rectangle pauseButton = new Rectangle(1212, 25, 45, 45);
     private GameMatch gameMatch;
     private Tank tank1;
@@ -83,8 +83,6 @@ public class GameMatchScreen extends State implements Screen, Serializable {
 
     @Override
     public void show() {
-        backgroundTexture = new Texture(Gdx.files.internal("background-2.png"));
-        //gameMatch.start();
     }
 
     @Override
@@ -155,7 +153,7 @@ public class GameMatchScreen extends State implements Screen, Serializable {
 
 
         game.getBatch().begin();
-        game.getBatch().draw(new Texture(Gdx.files.internal("background-3.png")), 0, 0);
+        game.getBatch().draw(backgroundTexture, 0, 0);
         if (super.getTurn() == 1) {
             game.getBatch().draw(new Texture(Gdx.files.internal("turn-1.png")), 550, 600, 215, 130);
         }
@@ -445,6 +443,8 @@ public class GameMatchScreen extends State implements Screen, Serializable {
 
     @Override
     public void dispose() {
+        //backgroundTexture.dispose();
+        //tex.dispose();
 
     }
 }

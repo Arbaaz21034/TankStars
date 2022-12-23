@@ -12,7 +12,6 @@ import com.gdx.tankstars.game.Serialize;
 import java.io.IOException;
 
 public class LoadGameScreen implements Screen  {
-
     private TankStarsGame game;
     private Texture loadScreenTexture;
     private final Rectangle buttonLoadGame = new Rectangle(513, 417, 248, 70);

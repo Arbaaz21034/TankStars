@@ -5,7 +5,7 @@ import com.gdx.tankstars.TankStarsGame;
 import java.io.*;
 
 public class Serialize {
-    SaveData saveData;
+    private SaveData saveData;
 
     public Serialize(SaveData saveData) {
         this.saveData = saveData;
