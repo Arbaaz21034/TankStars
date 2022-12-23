@@ -196,27 +196,20 @@ public abstract class Tank extends Sprite implements Serializable {
     public boolean damageControl(float damage){
         if (this.getDamageAngle() >= 180){
             damageAngle = 0;
-//            if (this.getPosition().y == this.initialPosition.y)
                 return false;
         }
         float radius = damage/100;
         this.setDamageAngle(this.getDamageAngle() + 1);
-//        System.out.println(this.getDamageAngle());
 
         float x = (float) (radius*Math.sin(Math.toRadians(this.getDamageAngle())));
         float y = (float) (radius*Math.cos(Math.toRadians(this.getDamageAngle())));
-//        System.out.println("This is y: "+ y);
         PositionComparator pc = PositionComparator.getInstance();
         if (pc.compare((this.initialPosition), attackPoint) > 0){
-//            System.out.println("I am in first");
             this.position = (new Vector2(this.getPosition().x + x, this.getPosition().y + y));
 
-//            System.out.println(this.getPosition().y);
         }
         else{
-//            System.out.println("I am in second");
             this.position = (new Vector2(this.getPosition().x - x, this.getPosition().y + y));
-//            System.out.println(this.getPosition().y);
         }
 
         checkConstraints();

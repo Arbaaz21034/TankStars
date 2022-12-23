@@ -3,17 +3,13 @@ package com.gdx.tankstars.screen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.gdx.tankstars.TankStarsGame;
 import com.gdx.tankstars.game.*;
-import com.gdx.tankstars.game.bullets.BulletDuplicate;
+import com.gdx.tankstars.game.bullets.Bullet;
 
 import java.io.Serializable;
 
@@ -25,7 +21,7 @@ public class GameMatchScreen extends State implements Screen, Serializable {
     private GameMatch gameMatch;
     private Tank tank1;
     private Tank tank2;
-    private BulletDuplicate bullet;
+    private Bullet bullet;
     private transient Texture tex = new Texture(Gdx.files.internal("bullet.png"));
 
 
@@ -322,7 +318,7 @@ public class GameMatchScreen extends State implements Screen, Serializable {
 
 
                 if (paramCount == 0) {
-                    bullet = new BulletDuplicate(tex, new Vector2(tank1.getPosition().x, tank1.getPosition().y));
+                    bullet = new Bullet(tex, new Vector2(tank1.getPosition().x, tank1.getPosition().y));
                     bullet.setParameters(getPower(), getAngle());
                     paramCount = 1;
                 }
@@ -352,7 +348,7 @@ public class GameMatchScreen extends State implements Screen, Serializable {
             else if (super.getTurn() == 2) {
 
                 if (paramCount == 0) {
-                    bullet = new BulletDuplicate(tex, new Vector2(tank2.getPosition().x,tank2.getPosition().y));
+                    bullet = new Bullet(tex, new Vector2(tank2.getPosition().x,tank2.getPosition().y));
                     bullet.setParameters(getPower(), getAngle());
                     paramCount = 1;
                 }

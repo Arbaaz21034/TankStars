@@ -1,11 +1,8 @@
 package com.gdx.tankstars.game;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.gdx.tankstars.TankStarsGame;
-import com.gdx.tankstars.game.bullets.BulletDuplicate;
+import com.gdx.tankstars.game.bullets.Bullet;
 
 import java.io.Serializable;
 import java.util.Random;
@@ -15,7 +12,7 @@ public class GameMatch extends State implements Serializable {
     private Tank tank1;
     private Tank tank2;
 
-    private BulletDuplicate bullet;
+    private Bullet bullet;
 
 
     public Tank getTank2() {
