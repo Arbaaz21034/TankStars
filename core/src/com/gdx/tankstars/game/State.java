@@ -6,7 +6,7 @@ import com.gdx.tankstars.TankStarsGame;
 // make this a singleton
 // This basically stores the state of the game
 public class State {
-    private TankStarsGame game;
+    private transient TankStarsGame game;
     private int turn; // 1 for player 1, 2 for player 2
     private Tank1 tank1;
     private Tank2 tank2;
@@ -19,6 +19,10 @@ public class State {
     public State(TankStarsGame game, int calledByPause) {
         this.game = game;
         this.turn = game.getStateData().getTurn();
+    };
+
+    public State() {
+
     }
 
     public State getState() {

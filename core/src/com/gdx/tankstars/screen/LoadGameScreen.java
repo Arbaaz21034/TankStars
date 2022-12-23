@@ -5,6 +5,11 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.gdx.tankstars.TankStarsGame;
+import com.gdx.tankstars.game.GameMatch;
+import com.gdx.tankstars.game.SaveData;
+import com.gdx.tankstars.game.Serialize;
+
+import java.io.IOException;
 
 public class LoadGameScreen implements Screen  {
 
@@ -33,7 +38,15 @@ public class LoadGameScreen implements Screen  {
 
             if (buttonLoadGame.contains(x, y)) {
                 System.out.println("Press load game button");
-                //this.dispose();
+                try {
+                    GameMatch gameMatch = Serialize.load();
+                    game.setScreen(new GameMatchScreen(game));
+                    this.dispose();
+
+                }
+                catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
             else if (buttonBack.contains(x, y)) {
                 System.out.println("Press back button");

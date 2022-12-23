@@ -15,16 +15,18 @@ import com.gdx.tankstars.TankStarsGame;
 import com.gdx.tankstars.game.*;
 import com.gdx.tankstars.game.bullets.BulletDuplicate;
 
-public class GameMatchScreen extends State implements Screen {
-    private TankStarsGame game;
-    private ShapeRenderer shapeRenderer;
-    private Texture backgroundTexture;
+import java.io.Serializable;
+
+public class GameMatchScreen extends State implements Screen, Serializable {
+    private transient TankStarsGame game;
+    private transient ShapeRenderer shapeRenderer;
+    private transient Texture backgroundTexture;
     private final Rectangle pauseButton = new Rectangle(1212, 25, 45, 45);
     private GameMatch gameMatch;
     private Tank tank1;
     private Tank tank2;
     private BulletDuplicate bullet;
-    Texture tex = new Texture(Gdx.files.internal("bullet.png"));
+    private transient Texture tex = new Texture(Gdx.files.internal("bullet.png"));
 
 
     private int powerMeterY = 20;
@@ -88,7 +90,7 @@ public class GameMatchScreen extends State implements Screen {
 
             if (pauseButton.contains(x, y)) {
                 System.out.println("Select Pause button");
-                game.setScreen(new GamePauseScreen(game));
+                game.setScreen(new GamePauseScreen(game, gameMatch));
             }
 
         };

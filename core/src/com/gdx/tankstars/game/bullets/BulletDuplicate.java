@@ -5,11 +5,13 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.gdx.tankstars.game.Tank;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.*;
 
-public class BulletDuplicate {
+public class BulletDuplicate implements Serializable {
 
-    Texture bulletTexture;
+    private transient Texture bulletTexture;
 
     private Vector2 position;
 

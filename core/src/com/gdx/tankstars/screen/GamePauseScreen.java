@@ -5,20 +5,23 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.gdx.tankstars.TankStarsGame;
+import com.gdx.tankstars.game.GameMatch;
 import com.gdx.tankstars.game.SaveData;
 import com.gdx.tankstars.game.Serialize;
 
 import java.io.IOException;
 
 public class GamePauseScreen implements Screen {
-    private TankStarsGame game;
-    private Texture pauseScreenTexture;
+    private transient TankStarsGame game;
+    private GameMatch gameMatch;
+    private transient Texture pauseScreenTexture;
     private final Rectangle buttonResume = new Rectangle(513, 302, 248, 70);
     private final Rectangle buttonSave = new Rectangle(513, 417, 248, 70);
     private final Rectangle buttonStartMenu = new Rectangle(513, 532, 248, 70);
 
-    public GamePauseScreen(TankStarsGame game) {
+    public GamePauseScreen(TankStarsGame game, GameMatch gameMatch) {
         this.game = game;
+        this.gameMatch = gameMatch;
     }
 
 
@@ -41,14 +44,14 @@ public class GamePauseScreen implements Screen {
             else if (buttonSave.contains(x, y)) {
                 System.out.println("Press save button");
                 game.setScreen(new StartScreen(game));
-                SaveData saveData = new SaveData(game);
+                SaveData saveData = new SaveData(gameMatch);
                 Serialize serialize = new Serialize(saveData);
                 try {
                     serialize.save();
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
-                this.dispose();
+
             }
             else if (buttonStartMenu.contains(x, y)) {
                 System.out.println("Press main menu button");

@@ -4,18 +4,16 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.gdx.tankstars.game.GameMatch;
 import com.gdx.tankstars.game.State;
-import com.gdx.tankstars.game.TerrainGenerator;
-import com.gdx.tankstars.game.bullets.GameMatchScreenD;
 import com.gdx.tankstars.screen.GameMatchScreen;
-import com.gdx.tankstars.screen.StartScreen;
 
 import java.io.Serializable;
 
-public class TankStarsGame extends Game implements Serializable {
+public class TankStarsGame extends Game {
 
-  private SpriteBatch batch;
+  private transient SpriteBatch batch;
 
-  public TankStarsGame() {
+  public void loadGame() {
+    this.batch = new SpriteBatch();
   }
 
   public SpriteBatch getBatch() {

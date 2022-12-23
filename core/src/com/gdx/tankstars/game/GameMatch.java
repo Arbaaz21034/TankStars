@@ -7,10 +7,11 @@ import com.badlogic.gdx.math.Vector2;
 import com.gdx.tankstars.TankStarsGame;
 import com.gdx.tankstars.game.bullets.BulletDuplicate;
 
+import java.io.Serializable;
 import java.util.Random;
 
-public class GameMatch extends State {
-    private TankStarsGame game;
+public class GameMatch extends State implements Serializable {
+    private transient TankStarsGame game;
     private Tank tank1;
     private Tank tank2;
 
@@ -44,6 +45,11 @@ public class GameMatch extends State {
         }
         tank1.setType(t1);
         tank2.setType(t2);
+
+    };
+
+    public GameMatch() {
+        super();
 
     }
 
