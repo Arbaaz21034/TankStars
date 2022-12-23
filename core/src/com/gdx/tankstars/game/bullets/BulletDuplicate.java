@@ -50,7 +50,7 @@ public class BulletDuplicate {
 
 
 
-        if (position.y <= 200){
+        if (position.y <= 160){
             tank.setAttackPoint(new Vector2(position.x + this.getBulletTexture().getWidth()/2, position.y));
             tank.setInitialPosition(tank.getPosition());
             return false;
@@ -88,7 +88,7 @@ public class BulletDuplicate {
         position.x -= velocity_x*delta;
         position.y = position.y + velocity_y*delta;
 
-        if (position.y <= 200){
+        if (position.y <= 160){
             tank.setAttackPoint(new Vector2(position.x + this.getBulletTexture().getWidth()/2, position.y));
             tank.setInitialPosition(tank.getPosition());
             return false;

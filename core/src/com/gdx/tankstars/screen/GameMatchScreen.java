@@ -24,7 +24,7 @@ public class GameMatchScreen extends State implements Screen {
     private Tank tank1;
     private Tank tank2;
     private BulletDuplicate bullet;
-    Texture tex = new Texture(Gdx.files.internal("bullet-3.png"));
+    Texture tex = new Texture(Gdx.files.internal("bullet.png"));
 
 
     private int powerMeterY = 20;
