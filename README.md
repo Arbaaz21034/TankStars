@@ -1,3 +1,3 @@
 # TankStars
 
-Note: DecaHex is a placeholder name for the game
+A clone of the Tank Stars game made in Java.
