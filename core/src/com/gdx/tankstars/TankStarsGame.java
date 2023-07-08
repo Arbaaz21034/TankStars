@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.gdx.tankstars.game.GameMatch;
 import com.gdx.tankstars.game.State;
 import com.gdx.tankstars.screen.GameMatchScreen;
+import com.gdx.tankstars.screen.StartScreen;
 
 import java.io.Serializable;
 
@@ -40,7 +41,7 @@ public class TankStarsGame extends Game {
     batch = new SpriteBatch();
 
     //this.setScreen(new StartScreen(this));
-    this.setScreen(new GameMatchScreen((this)));
+    this.setScreen(new StartScreen((this)));
   }
 
   @Override
